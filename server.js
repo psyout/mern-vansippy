@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const userRoute = require('./routes/userRoute');
+const errorHandler = require('./middleWare/errorMiddleware');
 
 const app = express();
 
@@ -20,6 +21,10 @@ app.get('/', (req, res) => {
 	res.send('Home Page');
 });
 
+// Error Middleware
+app.use(errorHandler);
+
+// Connect to MongoDB
 const PORT = process.env.PORT || 3000;
 
 mongoose
